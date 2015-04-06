@@ -1,0 +1,157 @@
+= Using JBake + Maven to post your blog on GitHub Pages
+Ricardo Arguello
+2015-04-06
+:jbake-type: post
+:jbake-status: published
+:jbake-tags: blog, asciidoc
+:idprefix:
+
+This post explains the steps to publish your blog using JBake and deploy it to GitHub Pages.
+
+.Install JBake
+
+- Download it from http://www.jbake.org
+- Unzip it somewhere
+
+  $ unzip ~/Downloads/jbake-2.3.2-bin.zip
+  $ cd ~/jbake-2.3.2/
+  $ export PATH=~/jbake-2.3.2/bin:$PATH
+
+.Install Java, Maven and Git in Fedora 21/22:
+
+  $ sudo yum install -y java-1.8.0-openjdk-devel maven git
+
+Edit ~/.m2/settings.xml to add a <server>:
+
+  <settings>
+    <servers>
+      <server>
+        <id>github</id>
+        <password>shequeethaich9eegaht2tahch4ooviephaqu0di</password>
+      </server>
+    </servers>
+  </settings>
+
+Paste the OAUTH you get from github.com Applications page.
+
+Create a project in GitHub, call it "username.github.io" and clone it:
+
+  $ mkdir ~/src
+  $ cd ~/src
+  $ git clone git@github.com:rarguello/rarguello.github.io.git
+
+Create a test page just to see if it works:
+
+  $ cd ~/src/rarguello.github.io
+  $ echo "Hello" > index.html
+  $ git add index.html
+  $ git commit -m "Test page"
+  $ git push
+
+Check http://rarguello.github.io to see if it says "Hello".
+
+Create a new branch called "jbake" to add the blog source code:
+
+  $ git checkout --orphan -b jbake
+  $ mkdir -p src/main/jbake
+  $ cd src/main/jbake
+  $ jbake -i
+    JBake v2.3.2 (2014-09-21 01:47:44AM) [http://jbake.org]
+
+    Base folder structure successfully created.
+  $ cd ~/src/rarguello.github.io
+
+NOTE: In your DNS server add a CNAME to www.ricardoarguello.com and ricardoarguello.com pointing to rarguello.github.io.
+
+.Add a CNAME in JBake "assets" diretory
+
+  $ echo www.ricardoarguello.com > ~/src/rarguello.github.io/src/main/jbake/assets/CNAME
+
+Edit ~/src/rarguello.github.io/src/main/jbake/jbake.properties to your taste
+
+  site.host=http://www.ricardoarguello.com
+  render.tags=false
+  render.sitemap=true
+
+Create a pom.xml file to bake the site:
+
+.pom.xml
+----
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>website</artifactId>
+  <groupId>io.github.rarguello</groupId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>rarguello.github.io website</name>
+  <description>The rarguello.github.io website source code</description>
+  <url>http://rarguello.github.io</url>
+  <scm>
+    <url>https://github.com/rarguello/rarguello.github.io</url>
+    <connection>scm:git:git://github.com/rarguello/rarguello.github.io.git</connection>
+    <developerConnection>scm:git:git@github.com:rarguello/rarguello.github.io.git</developerConnection>
+  </scm>
+  <properties>
+    <github.global.server>github</github.global.server>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>br.com.ingenieux</groupId>
+        <artifactId>jbake-maven-plugin</artifactId>
+        <version>0.0.9</version>
+        <executions>
+          <execution>
+            <id>default-generate</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.22</version>
+          </dependency>
+          <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctorj</artifactId>
+            <version>1.5.2</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.11</version>
+        <configuration>
+          <branch>refs/heads/master</branch>
+          <message>Site update</message>
+          <outputDirectory>${project.build.directory}/${project.build.finalName}</outputDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>site</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+----
+
+
+Bake the site:
+
+  $ mvn package
+
+If your like it publish it:
+
+  $ mvn site

@@ -5,12 +5,16 @@
   <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>rarguello.github.io website</name>
+  <description>The rarguello.github.io website source code</description>
   <url>http://rarguello.github.io</url>
   <scm>
     <url>https://github.com/rarguello/rarguello.github.io</url>
     <connection>scm:git:git://github.com/rarguello/rarguello.github.io.git</connection>
     <developerConnection>scm:git:git@github.com:rarguello/rarguello.github.io.git</developerConnection>
   </scm>
+  <properties>
+    <github.global.server>github</github.global.server>
+  </properties>
   <build>
     <plugins>
       <plugin>
@@ -59,7 +63,4 @@
       </plugin>
     </plugins>
   </build>
-  <properties>
-    <github.global.server>github</github.global.server>
-  </properties>
 </project>
