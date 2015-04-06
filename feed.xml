@@ -6,13 +6,13 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 6 Apr 2015 11:05:24 -0500</pubDate>
-    <lastBuildDate>Mon, 6 Apr 2015 11:05:24 -0500</lastBuildDate>
+    <pubDate>Mon, 6 Apr 2015 11:08:37 -0500</pubDate>
+    <lastBuildDate>Mon, 6 Apr 2015 11:08:37 -0500</lastBuildDate>
 
     <item>
-      <title>Fourth Post</title>
+      <title>Using JBake + Maven to post your blogon GitHub Pages</title>
       <link>http://jbake.org/blog/2015/2015-06-04.html</link>
-      <pubDate>Thu, 17 Oct 2013 00:00:00 -0500</pubDate>
+      <pubDate>Mon, 6 Apr 2015 00:00:00 -0500</pubDate>
       <guid isPermaLink="false">blog/2015/2015-06-04.html</guid>
       	<description>
 	&lt;div class=&quot;paragraph&quot;&gt;
@@ -21,7 +21,7 @@
 &lt;div class=&quot;ulist&quot;&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;http://example.org&quot; class=&quot;bare&quot;&gt;http://example.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://asciidoctor.org&quot; class=&quot;bare&quot;&gt;http://asciidoctor.org&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;http://example.org&quot;&gt;Example.org&lt;/a&gt;&lt;/p&gt;
