@@ -6,11 +6,11 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 6 Apr 2015 11:13:08 -0500</pubDate>
-    <lastBuildDate>Mon, 6 Apr 2015 11:13:08 -0500</lastBuildDate>
+    <pubDate>Mon, 6 Apr 2015 11:24:53 -0500</pubDate>
+    <lastBuildDate>Mon, 6 Apr 2015 11:24:53 -0500</lastBuildDate>
 
     <item>
-      <title>Using JBake + Maven to post your blogon GitHub Pages</title>
+      <title>Using JBake + Maven to post your blog on GitHub Pages</title>
       <link>http://jbake.org/blog/2015/2015-06-04.html</link>
       <pubDate>Mon, 6 Apr 2015 00:00:00 -0500</pubDate>
       <guid isPermaLink="false">blog/2015/2015-06-04.html</guid>
