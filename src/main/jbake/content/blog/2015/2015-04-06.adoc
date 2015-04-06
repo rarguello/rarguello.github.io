@@ -67,6 +67,10 @@ NOTE: In your DNS server add a CNAME to www.ricardoarguello.com and ricardoargue
 
   $ echo www.ricardoarguello.com > ~/src/rarguello.github.io/src/main/jbake/assets/CNAME
 
+.Add a .gitignore to the "assets" directory:
+
+  $ echo target > ~/src/rarguello.github.io/src/main/jbake/assets/.gitignore
+
 Edit ~/src/rarguello.github.io/src/main/jbake/jbake.properties to your taste
 
   site.host=http://www.ricardoarguello.com
