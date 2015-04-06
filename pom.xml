@@ -6,6 +6,11 @@
   <packaging>pom</packaging>
   <name>rarguello.github.io website</name>
   <url>http://rarguello.github.io</url>
+  <scm>
+    <url>https://github.com/rarguello/rarguello.github.io</url>
+    <connection>scm:git:git://github.com/rarguello/rarguello.github.io.git</connection>
+    <developerConnection>scm:git:git@github.com:rarguello/rarguello.github.io.git</developerConnection>
+  </scm>
   <build>
     <plugins>
       <plugin>
