@@ -6,8 +6,8 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 6 Apr 2015 11:24:53 -0500</pubDate>
-    <lastBuildDate>Mon, 6 Apr 2015 11:24:53 -0500</lastBuildDate>
+    <pubDate>Mon, 6 Apr 2015 12:26:59 -0500</pubDate>
+    <lastBuildDate>Mon, 6 Apr 2015 12:26:59 -0500</lastBuildDate>
 
     <item>
       <title>Using JBake + Maven to post your blog on GitHub Pages</title>
@@ -16,26 +16,212 @@
       <guid isPermaLink="false">blog/2015/2015-06-04.html</guid>
       	<description>
 	&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel diam purus. Curabitur ut nisi lacus.&lt;/p&gt;
+&lt;p&gt;This post explains the steps to publish your blog using JBake and deploy it to GitHub Pages.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;ulist&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Install JBake&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;http://asciidoctor.org&quot; class=&quot;bare&quot;&gt;http://asciidoctor.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Download it from &lt;a href=&quot;http://www.jbake.org&quot; class=&quot;bare&quot;&gt;http://www.jbake.org&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;http://example.org&quot;&gt;Example.org&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Unzip it somewhere&lt;/p&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ unzip ~/Downloads/jbake-2.3.2-bin.zip
+$ cd ~/jbake-2.3.2/
+$ export PATH=~/jbake-2.3.2/bin:$PATH&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Install Java, Maven and Git in Fedora 21/22:&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ sudo yum install -y java-1.8.0-openjdk-devel maven git&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Nam id nisl quam. Donec a lorem sit amet libero pretium vulputate vel ut purus. Suspendisse leo arcu,
-mattis et imperdiet luctus, pulvinar vitae mi. Quisque fermentum sollicitudin feugiat. Mauris nec leo
-ligula. Vestibulum tristique odio ut risus ultricies a hendrerit quam iaculis. Duis tempor elit sit amet
-ligula vehicula et iaculis sem placerat. Fusce dictum, metus at volutpat lacinia, elit massa auctor risus,
-id auctor arcu enim eu augue. Donec ultrices turpis in mi imperdiet ac venenatis sapien sodales. In
-consequat imperdiet nunc quis bibendum. Nulla semper, erat quis ornare tristique, lectus massa posuere
-libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.&lt;/p&gt;
+&lt;p&gt;Edit ~/.m2/settings.xml to add a &amp;lt;server&amp;gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;&amp;lt;settings&amp;gt;
+  &amp;lt;servers&amp;gt;
+    &amp;lt;server&amp;gt;
+      &amp;lt;id&amp;gt;github&amp;lt;/id&amp;gt;
+      &amp;lt;password&amp;gt;shequeethaich9eegaht2tahch4ooviephaqu0di&amp;lt;/password&amp;gt;
+    &amp;lt;/server&amp;gt;
+  &amp;lt;/servers&amp;gt;
+&amp;lt;/settings&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Paste the OAUTH you get from github.com Applications page.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Create a project in GitHub, call it &quot;username.github.io&quot; and clone it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ mkdir ~/src
+$ cd ~/src
+$ git clone git@github.com:rarguello/rarguello.github.io.git&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Create a test page just to see if it works:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ cd ~/src/rarguello.github.io
+$ echo &quot;Hello&quot; &amp;gt; index.html
+$ git add index.html
+$ git commit -m &quot;Test page&quot;
+$ git push&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Check &lt;a href=&quot;http://rarguello.github.io&quot; class=&quot;bare&quot;&gt;http://rarguello.github.io&lt;/a&gt; to see if it says &quot;Hello&quot;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Create a new branch called &quot;jbake&quot; to add the blog source code:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ git checkout --orphan -b jbake
+$ mkdir -p src/main/jbake
+$ cd src/main/jbake
+$ jbake -i
+  JBake v2.3.2 (2014-09-21 01:47:44AM) [http://jbake.org]&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;  Base folder structure successfully created.
+$ cd ~/src/rarguello.github.io&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+In your DNS server add a CNAME to www.ricardoarguello.com and ricardoarguello.com pointing to rarguello.github.io.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Add a CNAME in JBake &quot;assets&quot; diretory&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ echo www.ricardoarguello.com &amp;gt; ~/src/rarguello.github.io/src/main/jbake/assets/CNAME&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Edit ~/src/rarguello.github.io/src/main/jbake/jbake.properties to your taste&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;site.host=http://www.ricardoarguello.com
+render.tags=false
+render.sitemap=true&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Create a pom.xml file to bake the site:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;pom.xml&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;&amp;lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&amp;gt;
+  &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
+  &amp;lt;artifactId&amp;gt;website&amp;lt;/artifactId&amp;gt;
+  &amp;lt;groupId&amp;gt;io.github.rarguello&amp;lt;/groupId&amp;gt;
+  &amp;lt;version&amp;gt;1.0.0&amp;lt;/version&amp;gt;
+  &amp;lt;packaging&amp;gt;pom&amp;lt;/packaging&amp;gt;
+  &amp;lt;name&amp;gt;rarguello.github.io website&amp;lt;/name&amp;gt;
+  &amp;lt;description&amp;gt;The rarguello.github.io website source code&amp;lt;/description&amp;gt;
+  &amp;lt;url&amp;gt;http://rarguello.github.io&amp;lt;/url&amp;gt;
+  &amp;lt;scm&amp;gt;
+    &amp;lt;url&amp;gt;https://github.com/rarguello/rarguello.github.io&amp;lt;/url&amp;gt;
+    &amp;lt;connection&amp;gt;scm:git:git://github.com/rarguello/rarguello.github.io.git&amp;lt;/connection&amp;gt;
+    &amp;lt;developerConnection&amp;gt;scm:git:git@github.com:rarguello/rarguello.github.io.git&amp;lt;/developerConnection&amp;gt;
+  &amp;lt;/scm&amp;gt;
+  &amp;lt;properties&amp;gt;
+    &amp;lt;github.global.server&amp;gt;github&amp;lt;/github.global.server&amp;gt;
+  &amp;lt;/properties&amp;gt;
+  &amp;lt;build&amp;gt;
+    &amp;lt;plugins&amp;gt;
+      &amp;lt;plugin&amp;gt;
+        &amp;lt;groupId&amp;gt;br.com.ingenieux&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;jbake-maven-plugin&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;0.0.9&amp;lt;/version&amp;gt;
+        &amp;lt;executions&amp;gt;
+          &amp;lt;execution&amp;gt;
+            &amp;lt;id&amp;gt;default-generate&amp;lt;/id&amp;gt;
+            &amp;lt;phase&amp;gt;generate-resources&amp;lt;/phase&amp;gt;
+            &amp;lt;goals&amp;gt;
+              &amp;lt;goal&amp;gt;generate&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+          &amp;lt;/execution&amp;gt;
+        &amp;lt;/executions&amp;gt;
+        &amp;lt;dependencies&amp;gt;
+          &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.freemarker&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;freemarker&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;2.3.22&amp;lt;/version&amp;gt;
+          &amp;lt;/dependency&amp;gt;
+          &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.asciidoctor&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;asciidoctorj&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;1.5.2&amp;lt;/version&amp;gt;
+          &amp;lt;/dependency&amp;gt;
+        &amp;lt;/dependencies&amp;gt;
+      &amp;lt;/plugin&amp;gt;
+      &amp;lt;plugin&amp;gt;
+        &amp;lt;groupId&amp;gt;com.github.github&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;site-maven-plugin&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;0.11&amp;lt;/version&amp;gt;
+        &amp;lt;configuration&amp;gt;
+          &amp;lt;branch&amp;gt;refs/heads/master&amp;lt;/branch&amp;gt;
+          &amp;lt;message&amp;gt;Site update&amp;lt;/message&amp;gt;
+          &amp;lt;outputDirectory&amp;gt;${project.build.directory}/${project.build.finalName}&amp;lt;/outputDirectory&amp;gt;
+        &amp;lt;/configuration&amp;gt;
+        &amp;lt;executions&amp;gt;
+          &amp;lt;execution&amp;gt;
+            &amp;lt;goals&amp;gt;
+              &amp;lt;goal&amp;gt;site&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+            &amp;lt;phase&amp;gt;site&amp;lt;/phase&amp;gt;
+          &amp;lt;/execution&amp;gt;
+        &amp;lt;/executions&amp;gt;
+      &amp;lt;/plugin&amp;gt;
+    &amp;lt;/plugins&amp;gt;
+  &amp;lt;/build&amp;gt;
+&amp;lt;/project&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Bake the site:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ mvn package&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If your like it publish it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ mvn site&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 	</description>
     </item>

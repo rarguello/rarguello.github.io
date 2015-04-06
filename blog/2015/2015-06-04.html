@@ -71,26 +71,212 @@
 	<p><em>06 April 2015</em></p>
 
 	<p><div class="paragraph">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel diam purus. Curabitur ut nisi lacus.</p>
+<p>This post explains the steps to publish your blog using JBake and deploy it to GitHub Pages.</p>
 </div>
 <div class="ulist">
+<div class="title">Install JBake</div>
 <ul>
 <li>
-<p><a href="http://asciidoctor.org" class="bare">http://asciidoctor.org</a></p>
+<p>Download it from <a href="http://www.jbake.org" class="bare">http://www.jbake.org</a></p>
 </li>
 <li>
-<p><a href="http://example.org">Example.org</a></p>
+<p>Unzip it somewhere</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ unzip ~/Downloads/jbake-2.3.2-bin.zip
+$ cd ~/jbake-2.3.2/
+$ export PATH=~/jbake-2.3.2/bin:$PATH</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
+<div class="literalblock">
+<div class="title">Install Java, Maven and Git in Fedora 21/22:</div>
+<div class="content">
+<pre>$ sudo yum install -y java-1.8.0-openjdk-devel maven git</pre>
+</div>
+</div>
 <div class="paragraph">
-<p>Nam id nisl quam. Donec a lorem sit amet libero pretium vulputate vel ut purus. Suspendisse leo arcu,
-mattis et imperdiet luctus, pulvinar vitae mi. Quisque fermentum sollicitudin feugiat. Mauris nec leo
-ligula. Vestibulum tristique odio ut risus ultricies a hendrerit quam iaculis. Duis tempor elit sit amet
-ligula vehicula et iaculis sem placerat. Fusce dictum, metus at volutpat lacinia, elit massa auctor risus,
-id auctor arcu enim eu augue. Donec ultrices turpis in mi imperdiet ac venenatis sapien sodales. In
-consequat imperdiet nunc quis bibendum. Nulla semper, erat quis ornare tristique, lectus massa posuere
-libero, ut vehicula lectus nunc ut lorem. Aliquam erat volutpat.</p>
+<p>Edit ~/.m2/settings.xml to add a &lt;server&gt;:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;settings&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;github&lt;/id&gt;
+      &lt;password&gt;shequeethaich9eegaht2tahch4ooviephaqu0di&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Paste the OAUTH you get from github.com Applications page.</p>
+</div>
+<div class="paragraph">
+<p>Create a project in GitHub, call it "username.github.io" and clone it:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ mkdir ~/src
+$ cd ~/src
+$ git clone git@github.com:rarguello/rarguello.github.io.git</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a test page just to see if it works:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ cd ~/src/rarguello.github.io
+$ echo "Hello" &gt; index.html
+$ git add index.html
+$ git commit -m "Test page"
+$ git push</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check <a href="http://rarguello.github.io" class="bare">http://rarguello.github.io</a> to see if it says "Hello".</p>
+</div>
+<div class="paragraph">
+<p>Create a new branch called "jbake" to add the blog source code:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ git checkout --orphan -b jbake
+$ mkdir -p src/main/jbake
+$ cd src/main/jbake
+$ jbake -i
+  JBake v2.3.2 (2014-09-21 01:47:44AM) [http://jbake.org]</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  Base folder structure successfully created.
+$ cd ~/src/rarguello.github.io</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In your DNS server add a CNAME to www.ricardoarguello.com and ricardoarguello.com pointing to rarguello.github.io.
+</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="title">Add a CNAME in JBake "assets" diretory</div>
+<div class="content">
+<pre>$ echo www.ricardoarguello.com &gt; ~/src/rarguello.github.io/src/main/jbake/assets/CNAME</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Edit ~/src/rarguello.github.io/src/main/jbake/jbake.properties to your taste</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>site.host=http://www.ricardoarguello.com
+render.tags=false
+render.sitemap=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a pom.xml file to bake the site:</p>
+</div>
+<div class="listingblock">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre>&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;artifactId&gt;website&lt;/artifactId&gt;
+  &lt;groupId&gt;io.github.rarguello&lt;/groupId&gt;
+  &lt;version&gt;1.0.0&lt;/version&gt;
+  &lt;packaging&gt;pom&lt;/packaging&gt;
+  &lt;name&gt;rarguello.github.io website&lt;/name&gt;
+  &lt;description&gt;The rarguello.github.io website source code&lt;/description&gt;
+  &lt;url&gt;http://rarguello.github.io&lt;/url&gt;
+  &lt;scm&gt;
+    &lt;url&gt;https://github.com/rarguello/rarguello.github.io&lt;/url&gt;
+    &lt;connection&gt;scm:git:git://github.com/rarguello/rarguello.github.io.git&lt;/connection&gt;
+    &lt;developerConnection&gt;scm:git:git@github.com:rarguello/rarguello.github.io.git&lt;/developerConnection&gt;
+  &lt;/scm&gt;
+  &lt;properties&gt;
+    &lt;github.global.server&gt;github&lt;/github.global.server&gt;
+  &lt;/properties&gt;
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;br.com.ingenieux&lt;/groupId&gt;
+        &lt;artifactId&gt;jbake-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;0.0.9&lt;/version&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;id&gt;default-generate&lt;/id&gt;
+            &lt;phase&gt;generate-resources&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;generate&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+        &lt;dependencies&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;org.freemarker&lt;/groupId&gt;
+            &lt;artifactId&gt;freemarker&lt;/artifactId&gt;
+            &lt;version&gt;2.3.22&lt;/version&gt;
+          &lt;/dependency&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+            &lt;artifactId&gt;asciidoctorj&lt;/artifactId&gt;
+            &lt;version&gt;1.5.2&lt;/version&gt;
+          &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+      &lt;/plugin&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;com.github.github&lt;/groupId&gt;
+        &lt;artifactId&gt;site-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;0.11&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;branch&gt;refs/heads/master&lt;/branch&gt;
+          &lt;message&gt;Site update&lt;/message&gt;
+          &lt;outputDirectory&gt;${project.build.directory}/${project.build.finalName}&lt;/outputDirectory&gt;
+        &lt;/configuration&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;site&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;site&lt;/phase&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+&lt;/project&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bake the site:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ mvn package</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If your like it publish it:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ mvn site</pre>
+</div>
 </div></p>
 
 	<hr />
