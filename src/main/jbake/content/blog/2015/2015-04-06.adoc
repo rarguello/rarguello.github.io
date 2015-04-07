@@ -57,7 +57,6 @@ Create a new branch called "jbake" to add the blog source code:
   $ cd src/main/jbake
   $ jbake -i
     JBake v2.3.2 (2014-09-21 01:47:44AM) [http://jbake.org]
-
     Base folder structure successfully created.
   $ cd ~/src/rarguello.github.io
 
