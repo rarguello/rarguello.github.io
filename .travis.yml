@@ -1,10 +1,15 @@
 language: java
+
 jdk:
   - openjdk7
-script: mvn clean package site
+
+script:
+  - mvn --settings src/travis/settings.xml clean package site
+
 branches:
   only:
   - jbake
+
 env:
   global:
     secure: aJ4iv88yrJ7n9Ai2dWZlQDasYvYlqTqoKUC3TPLkPPg2ZU3zwV/hyrDVGnRsSTEL7Wein0fhuHasstI8v34PI2vqSf9aYFkxi5cW4SCHXitNOJtTPKX/j4ElV1xXLjszEG5DTe/VzT8cGYKIIWco3euFD7pKTqVx9nMen1ZWDq8=
