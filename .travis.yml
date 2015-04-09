@@ -4,7 +4,7 @@ jdk:
   - openjdk7
 
 script:
-  - mvn --settings src/travis/settings.xml clean package site
+  - mvn --settings src/travis/settings.xml site
 
 branches:
   only:
