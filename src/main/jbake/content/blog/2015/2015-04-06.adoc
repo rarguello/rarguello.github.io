@@ -11,7 +11,7 @@ This post explains the steps to publish your blog using JBake and deploy it to G
 .Install JBake
 
 - Download it from http://www.jbake.org
-- Unzip it somewhere
+- Unzip it somewhere:
 
   $ unzip ~/Downloads/jbake-2.3.2-bin.zip
   $ cd ~/jbake-2.3.2/
