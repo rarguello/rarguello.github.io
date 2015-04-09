@@ -6,8 +6,8 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Thu, 9 Apr 2015 04:30:30 +0000</pubDate>
-    <lastBuildDate>Thu, 9 Apr 2015 04:30:30 +0000</lastBuildDate>
+    <pubDate>Thu, 9 Apr 2015 04:40:15 +0000</pubDate>
+    <lastBuildDate>Thu, 9 Apr 2015 04:40:15 +0000</lastBuildDate>
 
     <item>
       <title>Using JBake + Maven to post your blog on GitHub Pages</title>
@@ -218,12 +218,71 @@ render.sitemap=true&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;If your like it publish it:&lt;/p&gt;
+&lt;p&gt;If your like it publish it using the &quot;site&quot; Maven goal, that deploys the baked HTML site to the &quot;master&quot; branch, that you can access using &lt;a href=&quot;http://username.github.io/&quot; class=&quot;bare&quot;&gt;http://username.github.io/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;literalblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;pre&gt;$ mvn site&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To have Travis build deploy the website automatically, you have to encrypt your GitHub Token. Create a .travis.yml file:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;travis.yml:&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;language: java
+jdk:
+  - openjdk7
+script:
+  - mvn --settings src/travis/settings.xml clean package site
+branches:
+  only:
+  - jbake&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Then, add the encrypted GitHub Token to the file:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ sudo yum install -y ruby rubygems
+$ travis encrypt GH_TOKEN=&amp;lt;token&amp;gt; --add env.global&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You also need a custom Maven settings.xml file:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ mkdir -p src/travis
+$ vi src/travis/settings.xml&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;settings.xml:&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;&amp;lt;settings&amp;gt;
+  &amp;lt;servers&amp;gt;
+    &amp;lt;server&amp;gt;
+      &amp;lt;id&amp;gt;github&amp;lt;/id&amp;gt;
+      &amp;lt;password&amp;gt;${env.GH_TOKEN}&amp;lt;/password&amp;gt;
+    &amp;lt;/server&amp;gt;
+  &amp;lt;/servers&amp;gt;
+&amp;lt;/settings&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Push the changes:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre&gt;$ git commit -a -m &quot;Add Travis support&quot;
+$ git push&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Travis will deploy your site on every commit on the &quot;jbake&quot; branch.&lt;/p&gt;
 &lt;/div&gt;
 	</description>
     </item>

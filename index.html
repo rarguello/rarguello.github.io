@@ -272,12 +272,71 @@ render.sitemap=true</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If your like it publish it:</p>
+<p>If your like it publish it using the "site" Maven goal, that deploys the baked HTML site to the "master" branch, that you can access using <a href="http://username.github.io/" class="bare">http://username.github.io/</a></p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>$ mvn site</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>To have Travis build deploy the website automatically, you have to encrypt your GitHub Token. Create a .travis.yml file:</p>
+</div>
+<div class="literalblock">
+<div class="title">travis.yml:</div>
+<div class="content">
+<pre>language: java
+jdk:
+  - openjdk7
+script:
+  - mvn --settings src/travis/settings.xml clean package site
+branches:
+  only:
+  - jbake</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, add the encrypted GitHub Token to the file:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ sudo yum install -y ruby rubygems
+$ travis encrypt GH_TOKEN=&lt;token&gt; --add env.global</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You also need a custom Maven settings.xml file:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ mkdir -p src/travis
+$ vi src/travis/settings.xml</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">settings.xml:</div>
+<div class="content">
+<pre>&lt;settings&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;github&lt;/id&gt;
+      &lt;password&gt;${env.GH_TOKEN}&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Push the changes:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ git commit -a -m "Add Travis support"
+$ git push</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Travis will deploy your site on every commit on the "jbake" branch.</p>
 </div></p>
 	
 	<hr />
