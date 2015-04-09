@@ -6,13 +6,13 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Mon, 6 Apr 2015 12:36:14 -0500</pubDate>
-    <lastBuildDate>Mon, 6 Apr 2015 12:36:14 -0500</lastBuildDate>
+    <pubDate>Thu, 9 Apr 2015 04:30:30 +0000</pubDate>
+    <lastBuildDate>Thu, 9 Apr 2015 04:30:30 +0000</lastBuildDate>
 
     <item>
       <title>Using JBake + Maven to post your blog on GitHub Pages</title>
       <link>http://jbake.org/blog/2015/2015-04-06.html</link>
-      <pubDate>Mon, 6 Apr 2015 00:00:00 -0500</pubDate>
+      <pubDate>Mon, 6 Apr 2015 00:00:00 +0000</pubDate>
       <guid isPermaLink="false">blog/2015/2015-04-06.html</guid>
       	<description>
 	&lt;div class=&quot;paragraph&quot;&gt;
@@ -25,7 +25,7 @@
 &lt;p&gt;Download it from &lt;a href=&quot;http://www.jbake.org&quot; class=&quot;bare&quot;&gt;http://www.jbake.org&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Unzip it somewhere&lt;/p&gt;
+&lt;p&gt;Unzip it somewhere:&lt;/p&gt;
 &lt;div class=&quot;literalblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;pre&gt;$ unzip ~/Downloads/jbake-2.3.2-bin.zip
@@ -94,12 +94,8 @@ $ git push&lt;/pre&gt;
 $ mkdir -p src/main/jbake
 $ cd src/main/jbake
 $ jbake -i
-  JBake v2.3.2 (2014-09-21 01:47:44AM) [http://jbake.org]&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;literalblock&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;pre&gt;  Base folder structure successfully created.
+  JBake v2.3.2 (2014-09-21 01:47:44AM) [http://jbake.org]
+  Base folder structure successfully created.
 $ cd ~/src/rarguello.github.io&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
