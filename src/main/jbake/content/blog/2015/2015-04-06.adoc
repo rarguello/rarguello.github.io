@@ -5,6 +5,7 @@ Ricardo Arguello
 :jbake-status: published
 :jbake-tags: blog, asciidoc
 :idprefix:
+:source-highlighter: pygments
 
 This post explains the steps to publish your blog using JBake and deploy it to GitHub Pages.
 
@@ -23,22 +24,30 @@ This post explains the steps to publish your blog using JBake and deploy it to G
 
 Edit ~/.m2/settings.xml to add a <server>:
 
-  <settings>
-    <servers>
-      <server>
-        <id>github</id>
-        <password>shequeethaich9eegaht2tahch4ooviephaqu0di</password>
-      </server>
-    </servers>
-  </settings>
+[source,xml]
+----
+<settings>
+  <servers>
+    <server>
+      <id>github</id> <!--1-->
+      <password>shequeethaich9eegaht2tahch4ooviephaqu0di</password> <!--2-->
+    </server>
+  </servers>
+</settings>
+----
+<1> The server name
+<2> The OAUTH Token from github.com
 
 Paste the OAUTH you get from github.com Applications page.
 
 Create a project in GitHub, call it "username.github.io" and clone it:
 
-  $ mkdir ~/src
-  $ cd ~/src
-  $ git clone git@github.com:rarguello/rarguello.github.io.git
+[source,sh]
+----
+$ mkdir ~/src
+$ cd ~/src
+$ git clone git@github.com:rarguello/rarguello.github.io.git
+----
 
 Create a test page just to see if it works:
 
