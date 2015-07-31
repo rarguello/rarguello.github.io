@@ -6,8 +6,8 @@
     <atom:link href="http://jbake.org/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Thu, 9 Apr 2015 04:49:47 +0000</pubDate>
-    <lastBuildDate>Thu, 9 Apr 2015 04:49:47 +0000</lastBuildDate>
+    <pubDate>Fri, 31 Jul 2015 03:01:32 +0000</pubDate>
+    <lastBuildDate>Fri, 31 Jul 2015 03:01:32 +0000</lastBuildDate>
 
     <item>
       <title>Using JBake + Maven to post your blog on GitHub Pages</title>
@@ -45,17 +45,27 @@ $ export PATH=~/jbake-2.3.2/bin:$PATH&lt;/pre&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Edit ~/.m2/settings.xml to add a &amp;lt;server&amp;gt;:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre&gt;&amp;lt;settings&amp;gt;
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;settings&amp;gt;
   &amp;lt;servers&amp;gt;
     &amp;lt;server&amp;gt;
-      &amp;lt;id&amp;gt;github&amp;lt;/id&amp;gt;
-      &amp;lt;password&amp;gt;shequeethaich9eegaht2tahch4ooviephaqu0di&amp;lt;/password&amp;gt;
+      &amp;lt;id&amp;gt;github&amp;lt;/id&amp;gt; &lt;b class=&quot;conum&quot;&gt;(1)&lt;/b&gt;
+      &amp;lt;password&amp;gt;shequeethaich9eegaht2tahch4ooviephaqu0di&amp;lt;/password&amp;gt; &lt;b class=&quot;conum&quot;&gt;(2)&lt;/b&gt;
     &amp;lt;/server&amp;gt;
   &amp;lt;/servers&amp;gt;
-&amp;lt;/settings&amp;gt;&lt;/pre&gt;
+&amp;lt;/settings&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The server name&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The OAUTH Token from github.com&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Paste the OAUTH you get from github.com Applications page.&lt;/p&gt;
@@ -63,11 +73,11 @@ $ export PATH=~/jbake-2.3.2/bin:$PATH&lt;/pre&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Create a project in GitHub, call it &quot;username.github.io&quot; and clone it:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;literalblock&quot;&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre&gt;$ mkdir ~/src
+&lt;pre class=&quot;prettyprint highlight&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;$ mkdir ~/src
 $ cd ~/src
-$ git clone git@github.com:rarguello/rarguello.github.io.git&lt;/pre&gt;
+$ git clone git@github.com:rarguello/rarguello.github.io.git&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;

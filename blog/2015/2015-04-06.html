@@ -100,17 +100,27 @@ $ export PATH=~/jbake-2.3.2/bin:$PATH</pre>
 <div class="paragraph">
 <p>Edit ~/.m2/settings.xml to add a &lt;server&gt;:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>&lt;settings&gt;
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;settings&gt;
   &lt;servers&gt;
     &lt;server&gt;
-      &lt;id&gt;github&lt;/id&gt;
-      &lt;password&gt;shequeethaich9eegaht2tahch4ooviephaqu0di&lt;/password&gt;
+      &lt;id&gt;github&lt;/id&gt; <b class="conum">(1)</b>
+      &lt;password&gt;shequeethaich9eegaht2tahch4ooviephaqu0di&lt;/password&gt; <b class="conum">(2)</b>
     &lt;/server&gt;
   &lt;/servers&gt;
-&lt;/settings&gt;</pre>
+&lt;/settings&gt;</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>The server name</p>
+</li>
+<li>
+<p>The OAUTH Token from github.com</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Paste the OAUTH you get from github.com Applications page.</p>
@@ -118,11 +128,11 @@ $ export PATH=~/jbake-2.3.2/bin:$PATH</pre>
 <div class="paragraph">
 <p>Create a project in GitHub, call it "username.github.io" and clone it:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>$ mkdir ~/src
+<pre class="prettyprint highlight"><code class="language-sh" data-lang="sh">$ mkdir ~/src
 $ cd ~/src
-$ git clone git@github.com:rarguello/rarguello.github.io.git</pre>
+$ git clone git@github.com:rarguello/rarguello.github.io.git</code></pre>
 </div>
 </div>
 <div class="paragraph">
